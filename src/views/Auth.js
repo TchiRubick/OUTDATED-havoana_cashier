@@ -17,6 +17,9 @@ import NotificationAlert from "react-notification-alert";
 import { Redirect } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { BASE_URL } from "../config/constant"
+
+const urlAuthentification = BASE_URL + "api/authentification";
 
 const Auth = () => {
 	const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
@@ -33,7 +36,7 @@ const Auth = () => {
 		if (checking === true) {
 			const instance = {
 				method: "POST",
-				url: "https://havoana-cashier.herokuapp.com/api/authentification",
+				url: urlAuthentification,
 				data: {
 					societe: textSociete,
 					login: textLogin,

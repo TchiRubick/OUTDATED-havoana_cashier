@@ -4,8 +4,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import axios from "axios";
 import NotificationAlert from "react-notification-alert";
 import { Col, Input, Button, Modal, Row } from "reactstrap";
-import dotenv from "dotenv";
-dotenv.config();
+import { BASE_URL } from "../../config/constant"
+
+const urlSell = BASE_URL + "/api/sell";
 
 const Paiement = (props) => {
 	const { viderPanier } = props;
@@ -37,7 +38,7 @@ const Paiement = (props) => {
 	const validerPanier = () => {
 		const instance = {
 			method: "POST",
-			url: "https://havoana-cashier.herokuapp.com/api/sell",
+			url: urlSell,
 			withCredentials: true,
 			data: { panier: panierList },
 		};

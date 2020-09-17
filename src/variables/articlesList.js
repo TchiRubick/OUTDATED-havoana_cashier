@@ -1,11 +1,12 @@
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
+import { BASE_URL } from "../config/constant"
+
+const urlProduit = BASE_URL + "api/produit";
 
 export const mocklist = (setListe) => {
 	const instance = {
 		method: "POST",
-		url: "https://havoana-cashier.herokuapp.com/api/produit",
+		url: urlProduit,
 		withCredentials: true,
 	};
 
