@@ -30,4 +30,6 @@ app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-app.listen(process.env.APP_PORT);
+const port = process.env.port || process.env.APP_PORT;
+
+app.listen(port);
