@@ -7,7 +7,8 @@ const mockList = (setter, head) => {
 	const instance = {
 		withCredentials: true,
 		method: "POST",
-		url: urlProduit
+		url: urlProduit,
+		headers: { crossDomain: true, 'Content-Type': 'application/json' },
 	};
 
 	axios(instance)
