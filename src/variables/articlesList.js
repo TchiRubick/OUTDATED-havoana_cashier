@@ -7,10 +7,7 @@ const mockList = (setter, head) => {
 	const instance = {
 		method: "POST",
 		url: urlProduit,
-		withCredentials: true,
-		headers: {
-			Cookie: 'Token=' + head.Token,
-		}
+		withCredentials: true
 	};
 
 	axios(instance)
