@@ -5,9 +5,9 @@ const urlProduit = BASE_URL + "api/produit";
 
 const mockList = (setter, head) => {
 	const instance = {
+		withCredentials: true,
 		method: "POST",
-		url: urlProduit,
-		withCredentials: true
+		url: urlProduit
 	};
 
 	axios(instance)
