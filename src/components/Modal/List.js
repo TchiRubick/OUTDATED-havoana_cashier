@@ -18,7 +18,7 @@ const List = () => {
     React.useEffect(() => {
         mockList(setpremaList, cookies);
     }, [cookies])
-
+    console.log(cookies)
     React.useEffect(() => {
         setListe(premaList);
     }, [setListe, premaList]);

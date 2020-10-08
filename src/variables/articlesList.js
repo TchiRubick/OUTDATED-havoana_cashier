@@ -3,13 +3,13 @@ import { BASE_URL } from "../config/constant"
 
 const urlProduit = BASE_URL + "api/produit";
 
-const mockList = (setter, token) => {
+const mockList = (setter, head) => {
 	const instance = {
 		method: "POST",
 		url: urlProduit,
 		withCredentials: true,
 		headers: {
-			'Token': token,
+			Token: head.Token,
 		}
 	};
 
