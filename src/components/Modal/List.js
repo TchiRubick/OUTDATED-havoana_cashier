@@ -4,6 +4,7 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import mockList from "../../variables/articlesList";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ListGroup, ListGroupItem, Input } from 'reactstrap'
 import matchSorter from 'match-sorter'
+import { useCookies  } from "react-cookie";
 
 let i = 0;
 
@@ -12,10 +13,11 @@ const List = () => {
     const setCurrentArticle = useSetRecoilState(currentArticle);
     const [searchValue, setSearchValue] = React.useState("");
     const [premaList, setpremaList] = React.useState([]);
+    const [cookies, ] = useCookies(['Token']);
 
     React.useEffect(() => {
-        mockList(setpremaList);
-    }, [])
+        mockList(setpremaList, cookies);
+    }, [cookies])
 
     React.useEffect(() => {
         setListe(premaList);
