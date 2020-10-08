@@ -38,16 +38,17 @@ const Action = () => {
 		let i = 0;
 		let duplicate = false;
 		let tmp_panier = [...panierList];
-
-		if (quantite > currentArticleValue.prd_quantite) {
+		console.log(currentArticleValue)
+		if (quantite > currentArticleValue.magst_quantite) {
 			notify(
 				"Quantité inssufisante. Ils vous reste " +
-					currentArticleValue.prd_quantite +
+					currentArticleValue.magst_quantite +
 					" quantité en vente pour cet article",
 				"danger"
 			);
 		} else {
 			if (panierList.length > 0) {
+				
 				tmp_panier.find((el) => {
 					if (
 						el.article.prd_codebarre.trim() ===
@@ -66,9 +67,9 @@ const Action = () => {
 
 						setTotal(
 							totalG +
-								currentArticleValue.prd_prixvente *
+								currentArticleValue.magst_prix *
 									(quantite === 0 ? 1 : quantite) -
-								el.article.prd_prixvente * el.quantite
+								el.article.magst_prix * el.quantite
 						);
 						return true;
 					}
@@ -90,7 +91,7 @@ const Action = () => {
 				]);
 				setTotal(
 					totalG +
-						currentArticleValue.prd_prixvente *
+						currentArticleValue.magst_prix *
 							(quantite === 0 ? 1 : quantite)
 				);
 			}

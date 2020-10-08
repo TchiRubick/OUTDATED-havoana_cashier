@@ -17,7 +17,7 @@ const Recap = () => {
 					</tr>
 					<tr>
 						<th scope="row"> Montant unitaire</th>
-						<td>{article.prd_prixvente}</td>
+						<td>{article.magst_prix}</td>
 					</tr>
 					<tr>
 						<th scope="row">Quantité total</th>
@@ -26,9 +26,9 @@ const Recap = () => {
 					<tr>
 						<th scope="row">Montant total</th>
 						<td>
-							{isNaN(article.prd_prixvente * quantite)
+							{isNaN(article.magst_prix * quantite)
 								? 0
-								: article.prd_prixvente * quantite}
+								: article.magst_prix * quantite}
 						</td>
 					</tr>
 				</tbody>

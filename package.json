@@ -14,7 +14,9 @@
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "eslint-plugin-flowtype": "3.13.0",
+    "filter-where": "^2.0.0",
     "history": "4.10.1",
+    "match-sorter": "^4.2.1",
     "node-sass": "4.13.1",
     "perfect-scrollbar": "1.5.0",
     "prop-types": "15.7.2",
@@ -26,6 +28,7 @@
     "react-notification-alert": "0.0.12",
     "react-router-dom": "5.1.2",
     "react-scripts": "^3.4.3",
+    "react-use": "^15.3.4",
     "reactstrap": "8.4.1",
     "recoil": "0.0.7",
     "typescript": "3.8.3"

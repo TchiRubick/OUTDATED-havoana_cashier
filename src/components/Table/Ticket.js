@@ -10,7 +10,7 @@ const Ticket = () => {
 	React.useEffect(() => {
 		let total = 0;
 		listPanier.forEach((el) => {
-			total += (el.article.prd_prixvente * el.quantite);
+			total += (el.article.magst_prix * el.quantite);
 		})
 
 		editTotalG(total);
@@ -22,11 +22,11 @@ const Ticket = () => {
 			res.push(
 				<tr key={index}>
 					<td>{el.article.prd_nom}</td>
-					<td>{el.article.prd_prixvente}</td>
+					<td>{el.article.magst_prix}</td>
 					<td>X {el.quantite}</td>
-					<td>{el.article.prd_prixvente * el.quantite}</td>
+					<td>{el.article.magst_prix * el.quantite}</td>
 					<td>
-						<Button color="success" size="sm" className="m-1" disabled={el.quantite >= el.article.prd_quantite ? true : false} onClick={() => incrementQuantitePanier(index)}>
+						<Button color="success" size="sm" className="m-1" disabled={el.quantite >= el.article.magst_quantite ? true : false} onClick={() => incrementQuantitePanier(index)}>
 							+1
 						</Button>
 						<Button color="success" size="sm" className="m-1"  disabled={el.quantite < 2 ? true : false} onClick={() => decrementQuantitePanier(index)}>

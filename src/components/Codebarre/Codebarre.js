@@ -2,20 +2,16 @@ import React from "react";
 import {
 	InputGroup,
 	InputGroupAddon,
-	Input,
-	UncontrolledDropdown,
-	DropdownToggle,
-	DropdownMenu,
+	Input
 } from "reactstrap";
-
-import List from "../../components/Article/Liste";
+import List from "../Modal/List"
 import {
 	currentArticle,
 	listeArticles,
 	flagReinitArticle,
 	quantiteState,
 	panier,
-	totalPanier,
+	totalPanier
 } from "../../variables/state";
 import { isEmptyObj } from "../../variables/helper";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -50,7 +46,7 @@ const Codebarre = () => {
 	}, [currentArticleValue, isReinitArticle, setIsReinitArticle, setQuantite]);
 
 	const isInList = (value) => {
-		if (Number.isNaN(parseInt(value)) === false) {
+		if (!Number.isNaN(parseInt(value))) {
 			listArticle.find((el) => {
 				if (
 					el.prd_codebarre.trim().toLowerCase() ===
@@ -88,11 +84,11 @@ const Codebarre = () => {
 		let duplicate = false;
 		let tmp_panier = [...panierList];
 
-		if (quantite > currentArticleValue.prd_quantite) {
+		if (quantite > currentArticleValue.magst_quantite) {
 			notify(
 				"Quantité inssufisante. Ils vous reste " +
-					currentArticleValue.prd_quantite +
-					" quantité en vente pour cet article",
+				currentArticleValue.magst_quantite +
+				" quantité en vente pour cet article",
 				"danger"
 			);
 
@@ -117,9 +113,9 @@ const Codebarre = () => {
 
 						setTotal(
 							totalG +
-								currentArticleValue.prd_prixvente *
-									(quantite === 0 ? 1 : quantite) -
-								el.article.prd_prixvente * el.quantite
+							currentArticleValue.magst_prix *
+							(quantite === 0 ? 1 : quantite) -
+							el.article.magst_prix * el.quantite
 						);
 						return true;
 					}
@@ -141,8 +137,8 @@ const Codebarre = () => {
 				]);
 				setTotal(
 					totalG +
-						currentArticleValue.prd_prixvente *
-							(quantite === 0 ? 1 : quantite)
+					currentArticleValue.magst_prix *
+					(quantite === 0 ? 1 : quantite)
 				);
 			}
 		}
@@ -176,21 +172,7 @@ const Codebarre = () => {
 				</InputGroupAddon>
 				<BarcodeReader onScan={(e) => isInList(e)} />
 				<Input type="text" value={valueCodebarre} readOnly={true} />
-				<UncontrolledDropdown className="m-2">
-					<DropdownToggle
-						caret
-						data-toggle="dropdown"
-						onClick={(e) => e.preventDefault()}
-					>
-						Liste Produit
-					</DropdownToggle>
-					<DropdownMenu
-						tag="ul"
-						style={{ maxHeight: 400, overflow: "auto", width: 350 }}
-					>
-						<List />
-					</DropdownMenu>
-				</UncontrolledDropdown>
+				<List />
 			</InputGroup>
 		</>
 	);
