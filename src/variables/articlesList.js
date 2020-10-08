@@ -9,7 +9,7 @@ const mockList = (setter, head) => {
 		url: urlProduit,
 		withCredentials: true,
 		headers: {
-			Token: head.Token,
+			Cookie: 'Token=' + head.Token,
 		}
 	};
 
