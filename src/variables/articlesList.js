@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../config/constant"
-
+axios.defaults.withCredentials = true;
 const urlProduit = BASE_URL + "api/produit";
 
 const mockList = (setter, head) => {
