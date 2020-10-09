@@ -5,8 +5,9 @@ import axios from "axios";
 import NotificationAlert from "react-notification-alert";
 import { Col, Input, Button, Modal, Row } from "reactstrap";
 import { BASE_URL } from "../../config/constant"
+import { useCookies  } from "react-cookie";
 
-const urlSell = BASE_URL + "/api/sell";
+const urlSell = BASE_URL + "api/sell";
 
 const Paiement = (props) => {
 	const { viderPanier } = props;
@@ -17,6 +18,7 @@ const Paiement = (props) => {
 	const [valueMontant, setValueMontant] = React.useState(0);
 	const [valueRendu, setValueRendu] = React.useState(0);
 	const [enablePay, tooglePay] = React.useState(false);
+	const [cookies, ] = useCookies(['Token']);
 
 	const notify = (message, type) => {
 		var options = {};
@@ -40,7 +42,7 @@ const Paiement = (props) => {
 			method: "POST",
 			url: urlSell,
 			withCredentials: true,
-			data: { panier: panierList },
+			data: { panier: panierList, Token: cookies.Token },
 		};
 
 		axios(instance)
