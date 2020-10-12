@@ -26,10 +26,15 @@ const Auth = () => {
 	const [textSociete, setTextSociete] = React.useState("");
 	const [textLogin, setTextLogin] = React.useState("");
 	const [textPassword, setTextPassword] = React.useState("");
+	const [textMachine, setTextMachine] = React.useState("");
 	const [checking, toogleChecking] = React.useState(false);
 	const [isError, toogleIsError] = React.useState(false);
 	const [authentified, setAuthentified] = React.useState(false);
 	const notificationRef = React.useRef(null);
+
+	React.useEffect(() => {
+		_getKeyMachine(setTextMachine);
+	}, [])
 
 	React.useEffect(() => {
 		removeCookie("Token");
@@ -41,7 +46,7 @@ const Auth = () => {
 					societe: textSociete,
 					login: textLogin,
 					password: textPassword,
-					machine: _getKeyMachine(),
+					machine: textMachine,
 				},
 			};
 
@@ -53,9 +58,9 @@ const Auth = () => {
 					} else {
 						notify(
 							"Code erreur:" +
-								res.data.code +
-								", " +
-								res.data.message
+							res.data.code +
+							", " +
+							res.data.message
 						);
 						toogleIsError(true);
 						toogleChecking(false);
@@ -77,6 +82,7 @@ const Auth = () => {
 		setAuthentified,
 		setCookie,
 		removeCookie,
+		textMachine
 	]);
 
 	const authentification = () => {
@@ -102,32 +108,18 @@ const Auth = () => {
 		}
 	};
 
-	const _getKeyMachine = () => {
-		let appName = navigator.appName;
-		let appCodeName = navigator.appCodeName;
-		let appVersion = navigator.appVersion;
-		let platform = navigator.platform;
-		let cookieEnabled = navigator.cookieEnabled;
-		let userAgent = navigator.userAgent;
-		let javaEnabled = navigator.javaEnabled();
-
-		let keyMachine =
-			"?app=" +
-			appName +
-			"&code=" +
-			appCodeName +
-			"&version=" +
-			appVersion +
-			"&platform=" +
-			platform +
-			"&ena=" +
-			cookieEnabled +
-			"&agent=" +
-			userAgent +
-			"&java=" +
-			javaEnabled;
-
-		return keyMachine;
+	const _getKeyMachine = (setTextMachine) => {
+		fetch(`https://geolocation-db.com/json/`)
+			.then(res => res.json())
+			.then(json => {
+				console.log(json)
+				setTextMachine(`IPv4=${json.IPv4}&
+				country_code=${json.country_code}&
+				country_name=${json.country_name}&
+				latitude=${json.latitude}&
+				longitude=${json.longitude}`);
+			})
+			.catch(err => console.log(err))
 	};
 
 	const notify = (message) => {
