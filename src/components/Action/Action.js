@@ -38,7 +38,7 @@ const Action = () => {
 		let i = 0;
 		let duplicate = false;
 		let tmp_panier = [...panierList];
-		console.log(currentArticleValue)
+		
 		if (quantite > currentArticleValue.magst_quantite) {
 			notify(
 				"Quantité inssufisante. Ils vous reste " +

@@ -112,7 +112,6 @@ const Auth = () => {
 		fetch(`https://geolocation-db.com/json/`)
 			.then(res => res.json())
 			.then(json => {
-				console.log(json)
 				setTextMachine(`IPv4=${json.IPv4}&country_code=${json.country_code}&country_name=${json.country_name}&latitude=${json.latitude}&longitude=${json.longitude}`);
 			})
 			.catch(err => console.log(err))

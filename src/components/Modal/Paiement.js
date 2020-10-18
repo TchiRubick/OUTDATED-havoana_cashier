@@ -10,15 +10,18 @@ import { useCookies  } from "react-cookie";
 const urlSell = BASE_URL + "api/sell";
 
 const Paiement = (props) => {
-	const { viderPanier } = props;
-	const notificationRef = React.useRef(null);
-	const totalG = useRecoilValue(totalPanier);
-	const panierList = useRecoilValue(panier);
-	const [isOpenModal, toggleModalSearch] = useRecoilState(modalPaiement);
-	const [valueMontant, setValueMontant] = React.useState(0);
-	const [valueRendu, setValueRendu] = React.useState(0);
-	const [enablePay, tooglePay] = React.useState(false);
-	const [cookies, ] = useCookies(['Token']);
+	const { viderPanier } 	= props;
+	const notificationRef 	= React.useRef(null);
+	const inputFocus 		= React.useRef(null)
+	const totalG 			= useRecoilValue(totalPanier);
+	const panierList 		= useRecoilValue(panier);
+	const [isOpenModal, toggleModalSearch] 	= useRecoilState(modalPaiement);
+	const [valueMontant, setValueMontant] 	= React.useState(0);
+	const [valueRendu, setValueRendu] 		= React.useState(0);
+	const [enablePay, tooglePay]			= React.useState(false);
+	const [cookies, ] 						= useCookies(['Token']);
+
+	const setFocus = () => {inputFocus.current && inputFocus.current.focus()}
 
 	const notify = (message, type) => {
 		var options = {};
@@ -75,6 +78,12 @@ const Paiement = (props) => {
         }
 	};
 
+	React.useEffect(() => {
+		setValueRendu("");
+		setValueMontant("");
+		setFocus();
+	}, [isOpenModal])
+
 	return (
 		<>
 			<div className="react-notification-alert-container">
@@ -84,6 +93,7 @@ const Paiement = (props) => {
 				modalClassName="modal-payement"
 				isOpen={isOpenModal}
 				toggle={() => toggleModalSearch(!isOpenModal)}
+				autoFocus={false}
 			>
 				<div
 					className="modal-header"
@@ -111,7 +121,9 @@ const Paiement = (props) => {
 									onChange={(e) =>
 										calculRendu(e.target.value)
                                     }
-                                    onFocus={() => setValueMontant("")}
+									onFocus={() => setValueMontant("")}
+									innerRef={inputFocus}
+									autoFocus={true}
 								/>
 							</Col>
 							<Col>

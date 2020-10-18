@@ -19,13 +19,15 @@ const List = () => {
         mockList(setpremaList, cookies);
     }, [cookies])
 
+    
+    const [modal, setModal] = React.useState(false);
+    
+    const toggle = () => setModal(!modal);
+    
     React.useEffect(() => {
         setListe(premaList);
-    }, [setListe, premaList]);
-
-    const [modal, setModal] = React.useState(false);
-
-    const toggle = () => setModal(!modal);
+        setSearchValue("");
+    }, [setListe, premaList, modal]);
 
     const selection = (article) => {
         setCurrentArticle(article);
@@ -51,7 +53,7 @@ const List = () => {
     return (
         <div style={{ margin: '5px' }}>
             <Button color="danger" onClick={toggle}>Liste article</Button>
-            <Modal isOpen={modal} toggle={toggle} style={{
+            <Modal isOpen={modal} toggle={toggle} autoFocus={false} style={{
                 position: 'absolute',
                 top: 0,
                 height: '0%',
